@@ -14,7 +14,12 @@
 (defn initial-entities []
   (reagent/atom [(new-entity :new-todo {:text "" :complete false})]))
 
+
 (defonce entities (initial-entities))
+
+
+(defn alter-entities! [transform entity]
+  (swap! entities transform entity))
 
 (defn add-entity! [new-entity]
   (swap! entities conj (assoc new-entity :id (get-unique-id!))))
