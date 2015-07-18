@@ -8,7 +8,9 @@
                  [org.clojure/clojurescript "0.0-3297"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [figwheel "0.3.6"]
+                 [datascript "0.11.5"]
                  [figwheel-sidecar "0.3.6"]
+                 [rum "0.2.7"]
                  [reagent "0.5.0"]]
 
   :plugins [[lein-cljsbuild "1.0.5"]
@@ -20,11 +22,11 @@
 
   :cljsbuild {
     :builds [{:id "dev"
-              :source-paths ["src" "test-cljs"]
-
+              :source-paths ["src"]
               :figwheel { :on-jsload "dry-todo.core/on-js-reload" }
 
               :compiler {:main dry-todo.core
+                         :warnings {:single-segment-namespace false}
                          :asset-path "js/compiled/out"
                          :output-to "resources/public/js/compiled/dry_todo.js"
                          :output-dir "resources/public/js/compiled/out"
