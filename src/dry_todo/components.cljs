@@ -1,5 +1,6 @@
 (ns ^:figwheel-always dry-todo.components
-  (:require [dry-todo.datascript-entities :refer [get-new-todo get-todos]]
+  (:require [dry-todo.datascript-entities :refer [get-new-todo get-todos
+                                                  get-incomplete-todos]]
             [rum]
             [dry-todo.actions :refer [component-for-action]]))
 
@@ -25,8 +26,12 @@
 
               [:span (component-for-action :remove-todo todo)]])])
 
+(rum/defc remaining-todos-count []
+          [:span (str (count (get-incomplete-todos)) " items left")])
 
 (rum/defc todo-app []
           [:main
            (new-todo-form (get-new-todo))
-           (todo-list (get-todos))])
+           (todo-list (get-todos))
+           [:footer
+            (remaining-todos-count)]])

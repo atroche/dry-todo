@@ -24,6 +24,16 @@
 (defn get-todos []
   (get-entities-by-type @conn :todo))
 
+(defn get-incomplete-todos []
+  (map (comp (partial eid->clj @conn) first)
+       (d/q '[:find ?e
+              :in $ ?t ?c
+              :where [?e :type ?t]
+                     [?e :complete ?c]]
+            @conn
+            :todo
+            false)))
+
 (defn get-new-todo []
   (first (get-entities-by-type @conn :new-todo)))
 
