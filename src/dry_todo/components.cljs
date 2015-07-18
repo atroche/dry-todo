@@ -14,12 +14,13 @@
            (for [todo todos]
              [:li
               {:key (:db/id todo)}
-              (:text todo)])])
+              [:span {:style {:margin 10}}
+               (:text todo)]
+              [:span (component-for-action :remove-todo todo)]])])
 
 
 (rum/defc todo-app [db]
-          [:main {:key 1234}
+          [:main
            (new-todo-form (get-new-todo db))
-
            (todo-list (get-todos db))])
 

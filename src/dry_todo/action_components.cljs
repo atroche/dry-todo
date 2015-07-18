@@ -8,3 +8,7 @@
   [:input (merge {:type  "text"
                   :value [(:text new-todo)]}
                  event-handlers)])
+
+(defn remove-todo-button [_ event-handlers]
+  [:button event-handlers
+   "x"])

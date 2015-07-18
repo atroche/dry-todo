@@ -35,6 +35,8 @@
   {:text     text
    :complete false})
 
+(defn remove-entity! [entity]
+  (d/transact! conn [[:db.fn/retractEntity (:db/id entity)]]))
 
 (defn update-entity! [updated-entity-data]
   (d/transact! conn [updated-entity-data]))
