@@ -7,22 +7,16 @@
 
  (enable-console-print!)
 
-(defn mount-app [db]
-  (rum/mount (todo-app db)
-             (. js/document (getElementById "app"))))
-
-
-(mount-app @conn)
+(def root-component (rum/mount (todo-app)
+                               (. js/document (getElementById "app"))))
 
 (d/listen! conn
            :render
-           (fn [tx-report]
-             (mount-app (:db-after tx-report))))
+           (fn [_]
+             (rum/request-render root-component)))
 
-
-(defn on-js-reload [])
-
-
+(defn on-js-reload []
+  (rum/request-render root-component))
 
 (d/listen! conn :log
            (fn [tx-report]

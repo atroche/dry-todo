@@ -21,19 +21,11 @@
             db
             entity-type)))
 
-(defn get-todos [db]
-  (get-entities-by-type db :todo))
+(defn get-todos []
+  (get-entities-by-type @conn :todo))
 
-(defn get-new-todo [db]
-  (first (get-entities-by-type db :new-todo)))
-
-; use cases for modifying:
-; adding todo
-; changing new-todo
-
-(defn create-todo [text]
-  {:text     text
-   :complete false})
+(defn get-new-todo []
+  (first (get-entities-by-type @conn :new-todo)))
 
 (defn remove-entity! [entity]
   (d/transact! conn [[:db.fn/retractEntity (:db/id entity)]]))
