@@ -18,7 +18,9 @@
 
               (component-for-action :toggle-todo-complete todo)
 
-              [:span {:style {:margin 10}}
+              [:span {:style {:margin          10
+                              :text-decoration (if (:complete todo)
+                                                 "line-through")}}
                (:text todo)]
 
               [:span (component-for-action :remove-todo todo)]])])
