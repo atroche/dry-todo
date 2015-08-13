@@ -8,3 +8,7 @@
   (assoc new-todo :text ""))
 
 
+(defn toggle-complete [todo _]
+  (assoc todo
+    :complete
+    (not (:complete todo))))

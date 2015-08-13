@@ -11,6 +11,7 @@
                  [datascript "0.11.5"]
                  [figwheel-sidecar "0.3.6"]
                  [rum "0.2.7"]
+                 [prismatic/dommy "1.1.0"]
                  [reagent "0.5.0"]]
 
   :plugins [[lein-cljsbuild "1.0.5"]

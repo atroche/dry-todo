@@ -5,10 +5,11 @@
             [datascript :as d]
             [clojure.string :as str]))
 
- (enable-console-print!)
+(enable-console-print!)
 
-(def root-component (rum/mount (todo-app)
-                               (. js/document (getElementById "app"))))
+(def root-component
+  (rum/mount (todo-app)
+             (. js/document (getElementById "app"))))
 
 (d/listen! conn
            :render
@@ -20,7 +21,7 @@
 
 (d/listen! conn :log
            (fn [tx-report]
-             (let [tx-id  (get-in tx-report [:tempids :db/current-tx])
+             (let [tx-id (get-in tx-report [:tempids :db/current-tx])
                    datoms (:tx-data tx-report)
                    datom->str (fn [d] (str (if (.-added d) "+" "−")
                                            "[" (.-e d) " " (.-a d) " " (pr-str (.-v d)) "]"))]
